@@ -1,0 +1,61 @@
+.loading-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+/* Modal content */
+.loading-modal-content {
+    background-color: #FFD6A5;
+    /* Warm autumn orange */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading text */
+.loading-text {
+    color: #8B4513;
+    /* Brown for autumn leaves */
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Falling leaves decoration (optional) */
+.falling-leaves {
+    background-image: url('/path-to-your-leaves-image.png');
+    /* Use a falling leaves animation */
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    animation: fall 5s infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(500px);
+        opacity: 0;
+    }
+}
+
+/* Customize Bootstrap spinner color */
+.spinner-border.text-warning {
+    color: #FF6347;
+    /* Tomato color for autumn tone */
+}

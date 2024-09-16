@@ -1,0 +1,30 @@
+.svg-frame {
+    position: fixed;
+    width: 100vw;
+    height: 20%;
+    overflow-y: hidden;
+    top: 0;
+}
+
+.svg-image {
+    left: 0;
+    width: 100%;
+    transform: translateY(-20%)
+}
+
+.main-menu {
+    /* display: flex; */
+    /* background-color: var(--light-sage); */
+    margin-top: 20vh;
+    padding: 5px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.content {
+    border-radius: 10px;
+    border: 10px solid;
+    border-color: var(--deep-forest-green);
+    background-color: var(--deep-forest-green);
+    padding: 5px;
+}

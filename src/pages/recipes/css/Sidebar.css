@@ -1,0 +1,31 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60px;
+    background-color: var(--light-sage);
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+.sidebar .nav-link {
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    background-color: #495057;
+}
+
+.sidebar:hover {
+    width: 250px;
+}
+
+.icon-white {
+    color: var(--pale-peach);
+    font-size: 45px;
+}

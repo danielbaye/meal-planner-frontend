@@ -1,0 +1,12 @@
+:root {
+    --light-sage: #D7DACE;
+    --pale-peach: #FFE9B3;
+    --golden-apricot: #FFC176;
+    --olive-drab: #ADB87F;
+    --light-lemon: #FFDC74;
+    --deep-forest-green: #59685C;
+}
+
+body {
+    background-color: var(--olive-drab);
+}
