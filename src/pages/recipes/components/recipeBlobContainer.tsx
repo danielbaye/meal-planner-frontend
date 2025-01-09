@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import RecipeBlob from "./recipeBlob";
 import { RecipeBlobContainerType } from "../types/RecipeBlobContainer.type";
 import "../css/RecipeBlob.css"
 import api from "../../../api";
 import LoadingModal from "../../../components/loadingModal"
 import { useNavigate } from "react-router-dom";
+import SearchBar from "./searchBar";
 
-const RecipeBlobContainer: React.FC<RecipeBlobContainerType> = () => {
+const RecipeBlobContainer: React.FC<RecipeBlobContainerType> = React.memo(() => {
 
     const [isLoading, setIsLoadting] = useState<boolean>(false)
     const [loadedAll, setLoadedAll] = useState<boolean>(false)
@@ -65,12 +66,16 @@ const RecipeBlobContainer: React.FC<RecipeBlobContainerType> = () => {
     const handleNaviage = (id: string) => {
         navigate(`/recipe/${id}`)
     }
+    const handleSearch = useCallback((searchQuery: string) => {
 
+    }, [])
 
     return <>
 
 
         <div className="recipe_container d-flex flex-row  justify-content-between">
+            <SearchBar onSearch={handleSearch} />
+
             {
                 recipes.map(recipe =>
                     <button className="blob" onClick={() => handleNaviage(recipe.id)}>
@@ -98,6 +103,6 @@ const RecipeBlobContainer: React.FC<RecipeBlobContainerType> = () => {
     </>
 
 
-}
+})
 
 export default RecipeBlobContainer

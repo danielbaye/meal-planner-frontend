@@ -8,7 +8,6 @@ import { NotFound } from '../NotFound'
 
 const RecipePage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-
     return (
         <MainPage>
             {id && <RecipeContainer recipeId={id} />}

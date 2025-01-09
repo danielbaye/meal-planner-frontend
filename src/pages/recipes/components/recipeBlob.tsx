@@ -1,4 +1,5 @@
 import { RecipeBlobType } from "../types/RecipeBlob.type";
+import RecipeFooter from "./recipeFooter";
 
 
 
@@ -24,22 +25,8 @@ const RecipeBlob: React.FC<RecipeBlobType> = (
         <img src={imageUrl} className="recipe-blob-image" alt={name + 'image'} />
         <div className="title-recipe-blob-container">
             <h2 className="title-recipe-blob" >{name}</h2>
-            {/* <h3 className="description-recipe-blob">{description}</h3> */}
         </div>
-        <div className="recipe-footer">
-            <div className="footer-item">
-                <p className="footer-text">{timeMinutes}</p>
-                <i className="bi bi-clock icon-style"></i>
-            </div>
-            <div className="footer-item">
-                <p className="footer-text">{skillLevel}</p>
-                <i className="bi bi-bar-chart icon-style"></i>
-            </div>
-            <div className="footer-item">
-                <p className="footer-text">{dishNumber}</p>
-                <i className="bi bi-people icon-style"></i>
-            </div>
-        </div>
+        <RecipeFooter timeMinutes={timeMinutes} skillLevel={skillLevel} dishNumber={dishNumber} />
 
     </div>)
 }

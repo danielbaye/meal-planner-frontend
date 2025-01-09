@@ -6,8 +6,6 @@ import MainPage from './mainPage';
 
 const MainMenu: React.FC = () => {
 
-    const handleSearch = () => {
-    }
     return (
         <MainPage>
             <RecipeBlobContainer />

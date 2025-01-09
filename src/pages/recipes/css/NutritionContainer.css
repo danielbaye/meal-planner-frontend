@@ -1,0 +1,54 @@
+.nutrition-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.nutrition_blob {
+    background-color: var(--light-lemon);
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    height: 90px;
+    width: 60px;
+    border-radius: 10px;
+    /* margin: 10px; */
+    padding: 2px;
+
+}
+
+.nutrition-total {
+    color: var(--olive-drab);
+    font-size: xx-large;
+    font-family: 'Playfair Display', sans-serif;
+}
+
+.nutrition-total-g {
+    color: var(--olive-drab);
+    font-family: 'Playfair Display', sans-serif;
+    /* bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0; */
+}
+
+.nutrition-total-div {
+    display: flex;
+    background-color: var(--pale-peach);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.nutrition-name {
+    color: var(--deep-forest-green);
+    font-size: small;
+    font-family: 'Playfair Display', sans-serif;
+    text-align: center;
+}
+
+a {
+    color: var(--deep-forest-green);
+    /* font-size: small; */
+    font-family: 'Playfair Display', sans-serif;
+}

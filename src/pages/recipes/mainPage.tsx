@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import SlidingSidebar from './components/slidingSidebar';
-import { TopPicture } from './components/topPicture';
 import "./css/MainMenu.css"
+import NavBar from '../../components/topNavBar';
 
 interface MainPageProps {
     children: ReactNode; // This type allows any valid React child elements
@@ -11,9 +11,9 @@ interface MainPageProps {
 const MainPage: React.FC<MainPageProps> = ({ children }) => {
     return (
         <>
-            <TopPicture />
+            <NavBar isLoggedIn={false} />
             <div className="main-menu">
-                <SlidingSidebar />
+                {/* <SlidingSidebar /> */}
                 <div className="content">
                     {children}
                 </div>

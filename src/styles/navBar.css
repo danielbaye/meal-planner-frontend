@@ -1,0 +1,44 @@
+/* Custom CSS for the navbar */
+.custom-navbar {
+    background-color: var(--light-sage);
+    /* Use your CSS variable */
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-toggle {
+    color: var(--deep-forest-green);
+    /* Default text color */
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-toggle:hover {
+    color: var(--golden-apricot);
+    /* Change color on hover */
+    background-color: transparent;
+    /* No background on hover */
+}
+
+/* Ensure dropdown opens on hover */
+.hoverable:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    background-color: var(--pale-peach);
+    /* Dropdown background color */
+}
+
+.dropdown-item:hover {
+    background-color: var(--light-lemon);
+    /* Change dropdown item background on hover */
+}
+
+.navbar-logo {
+    height: 40px;
+    /* Adjust the size as needed */
+    margin-right: 10px;
+    border-radius: 10px;
+
+}

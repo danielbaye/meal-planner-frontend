@@ -8,5 +8,10 @@
 }
 
 body {
+    /* background-image: url('/src/assets/istockphoto-1473100428-2048x2048.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center; */
     background-color: var(--olive-drab);
 }

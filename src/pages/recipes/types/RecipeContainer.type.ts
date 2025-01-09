@@ -1,3 +1,5 @@
+import { Nutrition } from "./Nutrition.type";
+
 export type RecipeContainerType = {
     recipeId: string
 }
@@ -16,18 +18,11 @@ export type RecipeType = {
     nutrition: Nutrition
 }
 
-export type Nutrition = {
-    calories: number;
-    proteinGram: number;
-    carbsGram: number;
-    fatGram: number;
-    saturatedFatGram: number;
-    saltGram: number;
-}
 
 export type recipeIngridient = {
     name: string;
     quantity: number;
     measurement: string;
     text: string;
+    cost_per_100_gr_ml: number
 }

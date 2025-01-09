@@ -5,6 +5,7 @@ interface IngredientDTO {
         name: string;
         externalId: string;
         imageUrl: string;
+        cost_per_100_gr_ml: number
     };
     quantity: number;
     measurement: string;

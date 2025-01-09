@@ -18,9 +18,11 @@ export function TopPicture() {
         };
     }, []);
 
-    return <div className="svg-frame">
-        <img src={topImage} alt="Food SVG" className="svg-image"
-            style={{ transform: `translateY(${Math.max(-0.7, Math.min(-0.2, -(scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 0.5 - 0.2)) * 100}%)` }}
-        />
+    return <div>
+        <div className="svg-frame">
+            <img src={topImage} alt="Food SVG" className="svg-image"
+            // style={{ transform: `translateY(${Math.max(-0.7, Math.min(-0.2, -(scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 0.5 - 0.2)) * 100}%)` }}
+            />
+        </div>
     </div>
 }

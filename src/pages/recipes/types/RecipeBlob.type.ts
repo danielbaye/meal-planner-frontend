@@ -1,9 +1,7 @@
+import { RecipeBlobFooterType } from "./RecipeFooter.type";
 
-export type RecipeBlobType = {
+export interface RecipeBlobType extends RecipeBlobFooterType {
     name: string;
     description: string;
     imageUrl: string;
-    timeMinutes: number;
-    skillLevel: number;
-    dishNumber: number;
-}
+} 

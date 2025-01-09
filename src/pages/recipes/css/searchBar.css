@@ -1,0 +1,77 @@
+.search-bar-container {
+    width: 100%;
+    /* Full width of parent */
+    position: relative;
+    margin: 0;
+}
+
+/* Input styling */
+.search-input {
+    background-color: var(--light-sage);
+    color: var(--deep-forest-green);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid var(--olive-drab);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar:focus {
+    background-color: var(--pale-peach);
+    border-color: var(--light-lemon);
+    outline: var(--deep-forest-green) solid 2px;
+}
+
+/* Suggestion list styling */
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid var(--light-sage);
+    border-radius: 0 0 8px 8px;
+    z-index: 10;
+}
+
+/* Suggestion item styling */
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    color: var(--deep-forest-green);
+    background-color: var(--light-sage);
+}
+
+.suggestion-item:hover {
+    background-color: var(--pale-peach);
+}
+
+.suggestion-image {
+    width: 75px;
+    border: 1px;
+    border-radius: 6px;
+    border-color: black;
+    margin-right: 10px;
+    border-style: solid;
+}
+
+.suggestion-text {
+    color: var(--deep-forest-green);
+    font-size: 20px;
+    font-family: 'Playfair Display', sans-serif;
+}
+
+.transition-component {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    /* Adjust duration and easing as needed */
+    /* Make sure it's visible initially */
+}
+
+.transition-component-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    /* Hide the element but keep space */
+}

@@ -3,14 +3,20 @@ import api from "../../../api";
 import { RecipeContainerType, recipeIngridient, RecipeType } from "../types/RecipeContainer.type";
 import LoadingModal from "../../../components/loadingModal"
 import "../css/RecipeContainer.css"
+import NutritionContainer from "./nutritionContainer";
+import RecipeFooter from "./recipeFooter";
+import { convertQuantity } from "../../../utils/measurements_converter"
+// import { calculateIngridientCost } from "utils/costCalculator";
 
 const RecipeContainer: React.FC<RecipeContainerType> = (
     { recipeId }
 ) => {
     const [isLoading, setIsLoadting] = useState<boolean>(false)
+    const [system, setSystem] = useState<'imperial' | 'metric'>('metric')
     const [recipe, setRecipe] = useState<RecipeType | undefined>()
 
     const loadRecipe = useCallback(async () => {
+
         setIsLoadting(true)
         try {
             const res = await api.get(`/api/recipes/${recipeId}/`)
@@ -28,47 +34,67 @@ const RecipeContainer: React.FC<RecipeContainerType> = (
 
     useEffect(() => {
         loadRecipe()
-    }, [loadRecipe])
+    }, [])
+
+    function handleSystemSwitch(): void {
+        if (system == 'imperial')
+            setSystem('metric')
+        else
+            setSystem('imperial')
+    }
+
+
+
 
     return (
-
         <div className="d-flex flex-column">
             {!isLoading && recipe != undefined &&
                 <>
-                    <div className="d-flex ">
+                    <div className="d-flex mb-4">
                         <img src={recipe.imageUrl} className="recipe-image" alt={recipe.name + 'image'} />
-                        <div className="title-container">
+                        <div className="title-container mx-3 p-1">
                             <h2 className="title">{recipe.name}</h2>
                             <h3 className="description">{recipe.description}</h3>
+                            <div className="mb-4">
+                                <RecipeFooter timeMinutes={recipe.timeMinutes} skillLevel={recipe.skillLevel} dishNumber={recipe.dishNumber} />
+                            </div>
+                            <NutritionContainer nutrition={recipe.nutrition} />
                         </div>
 
                     </div>
-                    <div className="recipe-footer">
-                        <div className="footer-item">
-                            <p className="footer-text">{recipe.timeMinutes}</p>
-                            <i className="bi bi-clock icon-style"></i>
-                        </div>
-                        <div className="footer-item">
-                            <p className="footer-text">{recipe.skillLevel}</p>
-                            <i className="bi bi-bar-chart icon-style"></i>
-                        </div>
-                        <div className="footer-item">
-                            <p className="footer-text">{recipe.dishNumber}</p>
-                            <i className="bi bi-people icon-style"></i>
-                        </div>
-                    </div>
+
                     <div className="d-flex justify-content-between">
                         <div className="ingridient-container">
-                            <ul>
-                                {recipe.ingrieients.map(ing =>
-                                    <li>{`${ing.quantity} ${ing.measurement} of ${ing.name} ${ing.text}`}</li>
-                                )}
-                            </ul>
+                            <h2 className="title m-2">Ingridients</h2>
+                            <button className="custom-btn-outline-primary" onClick={handleSystemSwitch}>{system}</button>
+                            <div className="container">
+                                {recipe.ingrieients.map((ing) => {
+                                    const { quantity, measurement } = convertQuantity(ing.quantity, ing.measurement, system)
+
+
+                                    return (<div className="row ">
+                                        <div className="col-sm small-text">
+                                            {`${quantity} ${measurement} ${measurement!=''? 'of':''} ${ing.name} ${ing.text}`}
+                                        </div>
+                                        <div className="col-sm small-text align-self-center">
+                                            {calculateIngridientCost(ing).toFixed(2)}
+                                        </div>
+                                    </div>)
+                                })}
+                            </div>
+                            <span >
+                                <div className="small-text mt-2 border-top border-secondary" >
+                                    {recipe.ingrieients.reduce((summerize, ing) => summerize + calculateIngridientCost(ing), 0).toFixed(2)}₪ /
+                                    / {(recipe.ingrieients.reduce((summerize, ing) => summerize + calculateIngridientCost(ing), 0) / recipe.dishNumber).toFixed(2)}₪ per dish
+                                </div>
+
+                            </span>
                         </div>
                         <div className="method-container">
+                            <h2 className="title m-2">method</h2>
                             <ul>
                                 {recipe.method.map(method =>
-                                    <li>{method}</li>
+                                    <li className="small-text">{method}</li>
                                 )}
                             </ul>
                         </div>
@@ -120,9 +146,17 @@ function recipeIngridientToIngridient(ing: IngredientDTO): recipeIngridient {
         name: ing.ingredient.name,
         quantity: ing.quantity,
         measurement: ing.measurement,
-        text: ''
+        text: '',
+        cost_per_100_gr_ml: ing.ingredient.cost_per_100_gr_ml
     }
     return recepieIngridient
 
 }
 
+
+function calculateIngridientCost(ing: { quantity: number; measurement: string; cost_per_100_gr_ml: number }) {
+
+    return ing.quantity * ing.cost_per_100_gr_ml * (ing.measurement == 'ml' || ing.measurement == 'g' ? 0.01 : ing.measurement == 'l' || ing.measurement == 'kg' ? 0.1 :
+        1)
+
+}
